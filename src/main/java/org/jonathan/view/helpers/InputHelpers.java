@@ -26,6 +26,25 @@ public class InputHelpers {
 
     //=============================================================================
 
+    // METODO PARA LER E VALIDAR NÚMEROS LONG
+    public static Long inputLong(String mensagem, Scanner sc) {
+        Long leitura = -1L;
+        do {
+            System.out.print(mensagem);
+            String leituraStr = sc.nextLine();
+            try {
+                leitura = Long.parseLong(leituraStr);
+                break;
+            } catch (NumberFormatException e) {
+                MessageHelper.invalidIntInput();
+                continue;
+            }
+        } while (true);
+        return leitura;
+    }
+
+    //=============================================================================
+
     //METODO PARA LER E VALIDAR NÚMEROS DECIMAIS
     public static double inputDouble(String mensagem, Scanner sc) {
 

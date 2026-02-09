@@ -40,9 +40,9 @@ public class AdminMenu {
         System.out.println("[ ------------------------------ ] ");
     }
 
-    public int foundUserById(String mensagem){
+    public Long findUserById(String mensagem){
         System.out.println("\n[--------- "+mensagem+" ---------]");
-        return InputHelpers.inputInteger("[ - Insira o ID do usuário: ", sc);
+        return InputHelpers.inputLong("[ - Insira o ID do usuário: ", sc);
     }
 
     public void showAllUsers(List<UserResponseDTO> users){

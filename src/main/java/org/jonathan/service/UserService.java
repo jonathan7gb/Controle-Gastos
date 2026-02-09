@@ -56,4 +56,19 @@ public class UserService {
 
         return user;
     }
+
+    public User findUserById(Long id){
+        User user = null;
+
+        try{
+            user = userRepository.findUserById(id);
+
+            if(user == null){
+                MessageHelper.error("Usuário não encontrado! Tente novamente.\n");
+            }
+        }catch (SQLException e){
+            throw new RuntimeException("Erro ao retornar dados do banco");
+        }
+        return user;
+    }
 }

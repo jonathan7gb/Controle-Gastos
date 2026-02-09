@@ -3,6 +3,7 @@ package org.jonathan.controller;
 import org.jonathan.domain.dto.UserDTO.UserRequestDTO;
 import org.jonathan.domain.entities.User;
 
+import org.jonathan.domain.mapper.UserMapper;
 import org.jonathan.service.UserService;
 import org.jonathan.view.menu.AdminMenu;
 import org.jonathan.view.menu.LoginView;
@@ -30,9 +31,17 @@ public class MainController {
                     switch (adminChoice){
                         case 1 -> {
                             UserRequestDTO userRequestDTO = adminMenu.createUserView();
-                            User userCreated = userService.createUser(userRequestDTO);
+                            userService.createUser(userRequestDTO);
                         }
-                        case 2 -> {}
+                        case 2 -> {
+                            Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
+                            User userFound = userService.findUserById(idUser);
+                            if(userFound != null){
+                                System.out.println();
+                                adminMenu.showUserDetail(UserMapper.toDTO(userFound));
+                                System.out.println();
+                            }
+                        }
                         case 3 -> {}
                         case 4 -> {}
                         case 5 -> {}

@@ -57,4 +57,26 @@ public class UserRepository {
         }
         return null;
     }
+
+    public User findUserById(Long id) throws SQLException{
+        String sql = """
+                SELECT nome, email, data_criacao
+                FROM usuarios
+                WHERE id = ?;
+                """;
+
+        User user = null;
+
+        try(Connection conn = ConnectDB.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setLong(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                user = new User(id, rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
+            }
+        }
+        return user;
+    }
 }
