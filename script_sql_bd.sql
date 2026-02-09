@@ -11,8 +11,7 @@ CREATE TABLE usuarios (
 
 CREATE TABLE categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
-    tipo ENUM('RECEITA', 'DESPESA') NOT NULL
+    nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE movimentacoes (
@@ -37,9 +36,10 @@ FROM usuarios u
 LEFT JOIN movimentacoes m ON u.id = m.usuario_id
 GROUP BY u.id, u.nome;
 
-INSERT INTO categorias (nome, tipo) VALUES
-('Salário', 'RECEITA'),
-('Freelance', 'RECEITA'),
-('Alimentação', 'DESPESA'),
-('Transporte', 'DESPESA'),
-('Lazer', 'DESPESA');
+INSERT INTO categorias (nome) VALUES
+('Salário'),
+('Freelance'),
+('Alimentação'),
+('Transporte'),
+('Lazer');
+

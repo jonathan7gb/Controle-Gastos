@@ -15,7 +15,7 @@ public class AdminMenu {
         System.out.println("""
                 [--------- MENU ADMIN ---------]
                 [ 1 - Criar Usuário
-                [ 2 - Procurar Usuário
+                [ 2 - Buscar Usuário
                 [ 3 - Listar Usuários
                 [ 4 - Editar Usuário
                 [ 5 - Excluir Usuário
@@ -41,8 +41,8 @@ public class AdminMenu {
         System.out.println("[ ------------------------------ ] ");
     }
 
-    public int foundUserById(){
-        System.out.println("[--------- PROCURAR USUÁRIO ---------]");
+    public int foundUserById(String mensagem){
+        System.out.println("[--------- "+mensagem+" ---------]");
         return InputHelpers.inputInteger("[ - Insira o ID do usuário: ", sc);
     }
 
@@ -52,4 +52,12 @@ public class AdminMenu {
             showUserDetail(u);
         }
     }
+
+    public UserRequestDTO editUserView(UserRequestDTO uDTO){
+        String newName = InputHelpers.inputString("[ - Editar nome (Atual: "+uDTO.getName() +"): ", sc);
+        String newEmail = InputHelpers.inputString("[ - Editar e-mail (Atual: "+uDTO.getEmail() +"): ", sc);
+        return new UserRequestDTO(newName, newEmail, uDTO.getPassword());
+    }
+
+
 }
