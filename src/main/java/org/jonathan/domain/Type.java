@@ -1,4 +1,4 @@
-package org.jonathan.model;
+package org.jonathan.domain;
 
 public enum Type {
 

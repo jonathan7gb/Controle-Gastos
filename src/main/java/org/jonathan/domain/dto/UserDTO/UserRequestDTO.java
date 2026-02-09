@@ -1,6 +1,4 @@
-package org.jonathan.model.dto.UserDTO;
-
-import java.time.LocalDateTime;
+package org.jonathan.domain.dto.UserDTO;
 
 public class UserRequestDTO {
 

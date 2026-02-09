@@ -1,4 +1,4 @@
-package org.jonathan.model.entities;
+package org.jonathan.domain.entities;
 
 public class Category {
 

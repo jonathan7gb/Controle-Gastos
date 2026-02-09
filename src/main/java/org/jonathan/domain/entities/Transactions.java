@@ -1,6 +1,6 @@
-package org.jonathan.model.entities;
+package org.jonathan.domain.entities;
 
-import org.jonathan.model.Type;
+import org.jonathan.domain.Type;
 
 import java.time.LocalDateTime;
 

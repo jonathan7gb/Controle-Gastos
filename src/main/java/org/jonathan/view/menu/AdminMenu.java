@@ -1,6 +1,7 @@
 package org.jonathan.view.menu;
 
-import org.jonathan.model.entities.User;
+import org.jonathan.domain.dto.UserDTO.UserRequestDTO;
+import org.jonathan.domain.dto.UserDTO.UserResponseDTO;
 import org.jonathan.view.helpers.InputHelpers;
 
 import java.util.List;
@@ -24,15 +25,15 @@ public class AdminMenu {
         return InputHelpers.inputInteger("[ ? - Sua Escolha: ", sc);
     }
 
-    public User createUserView(){
+    public UserRequestDTO createUserView(){
         System.out.println("[--------- CRIAR USUÁRIO ---------]");
         String name = InputHelpers.inputString("[ - Insira o nome: ", sc);
         String email = InputHelpers.inputString("[ - Insira o email: ", sc);
         String password = InputHelpers.inputString("[ - Insira a senha: ", sc);
-        return new User(name, email, password);
+        return new UserRequestDTO(name, email, password);
     }
 
-    public void showUserDetail(User u){
+    public void showUserDetail(UserResponseDTO u){
         System.out.println("[ ------------------------------ ]");
         System.out.println("[ [" + u.getId() + "] " + u.getName());
         System.out.println("[ Email: " + u.getEmail());
@@ -45,10 +46,10 @@ public class AdminMenu {
         return InputHelpers.inputInteger("[ - Insira o ID do usuário: ", sc);
     }
 
-    public void showAllUsers(List<User> users){
+    public void showAllUsers(List<UserResponseDTO> users){
         System.out.println("[--------- LISTAR USUÁRIOS ---------]");
-        for(User user : users){
-            showUserDetail(user);
+        for(UserResponseDTO u : users){
+            showUserDetail(u);
         }
     }
 }

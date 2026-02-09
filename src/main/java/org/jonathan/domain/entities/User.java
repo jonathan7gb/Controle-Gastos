@@ -1,8 +1,8 @@
-package org.jonathan.model.dto.UserDTO;
+package org.jonathan.domain.entities;
 
 import java.time.LocalDateTime;
 
-public class UserResponseDTO {
+public class User {
 
     private Long id;
     private String name;
@@ -10,11 +10,24 @@ public class UserResponseDTO {
     private String password;
     private LocalDateTime creation_date;
 
-    public UserResponseDTO(Long id, String name, String email, String password, LocalDateTime creation_date) {
+    public User(Long id, String name, String email, String password, LocalDateTime creation_date) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.creation_date = creation_date;
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(Long id, String name, String email, LocalDateTime creation_date) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
         this.creation_date = creation_date;
     }
 
