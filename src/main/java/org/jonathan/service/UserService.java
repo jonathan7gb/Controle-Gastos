@@ -8,6 +8,7 @@ import org.jonathan.view.helpers.MessageHelper;
 import org.jonathan.view.menu.LoginView;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class UserService {
 
@@ -17,22 +18,41 @@ public class UserService {
     public User login(UserRequestDTO userRequestDTO){
         User user =  null;
 
-        do {
-            userRequestDTO = loginView.login();
-
             try {
                 user = userRepository.searchUserByEmailAndPassword(userRequestDTO.getEmail(), userRequestDTO.getPassword());
 
                 if (user == null) {
-                    MessageHelper.error("Credenciais inválidas. Tente Novamente");
+                    MessageHelper.error("Credenciais inválidas. Tente Novamente\n");
+
                 } else {
-                    MessageHelper.success("Logado com sucesso.");
+                    MessageHelper.success("Logado com sucesso.\n");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException("Erro ao buscar os dados!");
             }
 
-        }while(user == null);
+
+        return user;
+    }
+
+    public User createUser(UserRequestDTO userRequestDTO){
+        User user = null;
+
+        if(userRequestDTO == null){
+            MessageHelper.error("Erro ao criar usuário!\n");
+        }else {
+            try {
+                user = userRepository.createUser(userRequestDTO);
+
+                if(user != null){
+                    MessageHelper.success("Usuário criado com sucesso.\n");
+                }
+            }catch (SQLIntegrityConstraintViolationException e){
+                MessageHelper.error("Usuário não cadastrado, verifique as informações inseridas. Tente Novamente\n");
+            }catch (SQLException e){
+                throw new RuntimeException("Erro ao salvar dados no banco");
+            }
+        }
 
         return user;
     }

@@ -19,9 +19,8 @@ public class AdminMenu {
                 [ 3 - Listar Usuários
                 [ 4 - Editar Usuário
                 [ 5 - Excluir Usuário
-                [ 6 - Sair do Sistema
-                [------------------------------]
-                """);
+                [ 0 - Sair do Sistema
+                [------------------------------]""");
         return InputHelpers.inputInteger("[ ? - Sua Escolha: ", sc);
     }
 

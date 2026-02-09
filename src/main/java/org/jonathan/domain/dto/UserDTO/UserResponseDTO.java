@@ -1,5 +1,6 @@
 package org.jonathan.domain.dto.UserDTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UserResponseDTO {
@@ -7,9 +8,9 @@ public class UserResponseDTO {
     private Long id;
     private String name;
     private String email;
-    private LocalDateTime creation_date;
+    private LocalDate creation_date;
 
-    public UserResponseDTO(Long id, String name, String email, LocalDateTime creation_date) {
+    public UserResponseDTO(Long id, String name, String email, LocalDate creation_date) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -40,11 +41,11 @@ public class UserResponseDTO {
         this.email = email;
     }
 
-    public LocalDateTime getCreation_date() {
+    public LocalDate getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(LocalDateTime creation_date) {
+    public void setCreation_date(LocalDate creation_date) {
         this.creation_date = creation_date;
     }
 }

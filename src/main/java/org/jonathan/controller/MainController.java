@@ -15,16 +15,35 @@ public class MainController {
 
     public void startSystem(){
        boolean leftSystem = false;
-        do {
-           UserRequestDTO userRequestDTO = loginView.login();
-           User user = userService.login(userRequestDTO);
+       User user = null;
+
+            while(user == null){
+               UserRequestDTO userRequestDTO = loginView.login();
+               user = userService.login(userRequestDTO);
+            }
 
            if(user.getEmail().equals("admin@gmail.com")){
-               int adminChoice = adminMenu.menuAdmin();
+               int adminChoice = -1;
+               do {
+                    adminChoice = adminMenu.menuAdmin();
+
+                    switch (adminChoice){
+                        case 1 -> {
+                            UserRequestDTO userRequestDTO = adminMenu.createUserView();
+                            User userCreated = userService.createUser(userRequestDTO);
+                        }
+                        case 2 -> {}
+                        case 3 -> {}
+                        case 4 -> {}
+                        case 5 -> {}
+                        case 0 -> {
+                            return;
+                        }
+                    }
+               }while(true);
            }else{
 
            }
 
-       }while(!leftSystem);
     }
 }
