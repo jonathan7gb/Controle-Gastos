@@ -6,8 +6,9 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    data_criacao DATE DEFAULT (CURRENT_DATE)
 );
+INSERT INTO usuarios(nome, email, senha) VALUES ("admin", "admin@gmail.com", "senha123");
 
 CREATE TABLE categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,
