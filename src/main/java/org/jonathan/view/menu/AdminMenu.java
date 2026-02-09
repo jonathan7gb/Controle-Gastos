@@ -26,7 +26,7 @@ public class AdminMenu {
     }
 
     public UserRequestDTO createUserView(){
-        System.out.println("[--------- CRIAR USUÁRIO ---------]");
+        System.out.println("\n[--------- CRIAR USUÁRIO ---------]");
         String name = InputHelpers.inputString("[ - Insira o nome: ", sc);
         String email = InputHelpers.inputString("[ - Insira o email: ", sc);
         String password = InputHelpers.inputString("[ - Insira a senha: ", sc);
@@ -42,22 +42,22 @@ public class AdminMenu {
     }
 
     public int foundUserById(String mensagem){
-        System.out.println("[--------- "+mensagem+" ---------]");
+        System.out.println("\n[--------- "+mensagem+" ---------]");
         return InputHelpers.inputInteger("[ - Insira o ID do usuário: ", sc);
     }
 
     public void showAllUsers(List<UserResponseDTO> users){
-        System.out.println("[--------- LISTAR USUÁRIOS ---------]");
+        System.out.println("\n[--------- LISTAR USUÁRIOS ---------]");
         for(UserResponseDTO u : users){
             showUserDetail(u);
         }
     }
 
     public UserRequestDTO editUserView(UserRequestDTO uDTO){
+        System.out.println("\n[--------- EDITAR USUÁRIO ---------]");
         String newName = InputHelpers.inputString("[ - Editar nome (Atual: "+uDTO.getName() +"): ", sc);
         String newEmail = InputHelpers.inputString("[ - Editar e-mail (Atual: "+uDTO.getEmail() +"): ", sc);
         return new UserRequestDTO(newName, newEmail, uDTO.getPassword());
     }
-
 
 }
