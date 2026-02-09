@@ -37,7 +37,7 @@ public class AdminMenu {
         System.out.println("[ ------------------------------ ]");
         System.out.println("[ [" + u.getId() + "] " + u.getName());
         System.out.println("[ Email: " + u.getEmail());
-        System.out.println("[ Password: " + u.getPassword());
+        System.out.println("[ Data de Criacão: " + u.getCreation_date());
         System.out.println("[ ------------------------------ ] ");
     }
 
