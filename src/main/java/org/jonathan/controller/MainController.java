@@ -3,8 +3,7 @@ package org.jonathan.controller;
 import org.jonathan.domain.dto.UserDTO.UserRequestDTO;
 import org.jonathan.domain.entities.User;
 
-import org.jonathan.domain.mapper.UserMapper;
-import org.jonathan.service.UserService;
+import org.jonathan.service.AdminService;
 import org.jonathan.view.menu.AdminMenu;
 import org.jonathan.view.menu.LoginView;
 
@@ -12,7 +11,8 @@ public class MainController {
 
     LoginView loginView = new LoginView();
     AdminMenu adminMenu = new AdminMenu();
-    UserService userService = new UserService();
+    AdminController adminController = new AdminController();
+    AdminService adminService = new AdminService();
 
     public void startSystem(){
        boolean leftSystem = false;
@@ -20,39 +20,15 @@ public class MainController {
 
             while(user == null){
                UserRequestDTO userRequestDTO = loginView.login();
-               user = userService.login(userRequestDTO);
+               user = adminService.login(userRequestDTO);
             }
 
            if(user.getEmail().equals("admin@gmail.com")){
-               int adminChoice = -1;
-               do {
-                    adminChoice = adminMenu.menuAdmin();
-
-                    switch (adminChoice){
-                        case 1 -> {
-                            UserRequestDTO userRequestDTO = adminMenu.createUserView();
-                            userService.createUser(userRequestDTO);
-                        }
-                        case 2 -> {
-                            Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
-                            User userFound = userService.findUserById(idUser);
-                            if(userFound != null){
-                                System.out.println();
-                                adminMenu.showUserDetail(UserMapper.toDTO(userFound));
-                                System.out.println();
-                            }
-                        }
-                        case 3 -> {}
-                        case 4 -> {}
-                        case 5 -> {}
-                        case 0 -> {
-                            return;
-                        }
-                    }
-               }while(true);
+              adminController.adminController();
            }else{
 
            }
+
 
     }
 }
