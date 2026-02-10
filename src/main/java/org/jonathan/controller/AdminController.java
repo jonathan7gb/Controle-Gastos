@@ -42,6 +42,8 @@ public class AdminController {
                 case 4 -> {
                     Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
                     UserResponseDTO userFound = adminService.findUserById(idUser);
+                    System.out.println();
+                    adminMenu.showUserDetail(userFound);
                     UserRequestDTO userRequestDTO = adminMenu.editUserView(userFound);
                     boolean updated = adminService.updateUser(idUser, userRequestDTO);
                 }
