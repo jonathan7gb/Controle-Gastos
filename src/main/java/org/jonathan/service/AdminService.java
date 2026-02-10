@@ -87,4 +87,24 @@ public class AdminService {
         }
         return users;
     }
+
+    public boolean updateUser(Long id, UserRequestDTO userRequestDTO){
+        try{
+            UserResponseDTO user = findUserById(id);
+
+            if(user != null){
+                boolean updated = adminRepository.updateUser(id, userRequestDTO);
+
+                if(!updated){
+                    MessageHelper.error("Erro ao atualizar usuário!\n");
+                }else{
+                    MessageHelper.success("Usuário atualizado com sucesso!\n");
+                    return true;
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException("Erro ao atualizar dados do banco");
+        }
+        return false;
+    }
 }

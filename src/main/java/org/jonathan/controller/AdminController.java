@@ -39,7 +39,12 @@ public class AdminController {
                     adminMenu.showAllUsers(userList);
                     System.out.println();
                 }
-                case 4 -> {}
+                case 4 -> {
+                    Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
+                    UserResponseDTO userFound = adminService.findUserById(idUser);
+                    UserRequestDTO userRequestDTO = adminMenu.editUserView(userFound);
+                    boolean updated = adminService.updateUser(idUser, userRequestDTO);
+                }
                 case 5 -> {}
                 case 0 -> {
                     System.out.println("\n[---- SISTEMA ENCERRADO COM SUCESSO ----]");

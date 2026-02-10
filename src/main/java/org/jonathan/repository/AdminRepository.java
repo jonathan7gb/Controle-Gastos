@@ -103,4 +103,26 @@ public class AdminRepository {
 
         return users;
     }
+
+    public boolean updateUser(Long id, UserRequestDTO userRequestDTO) throws SQLException{
+        String sql = """
+                UPDATE usuarios
+                SET nome = ?,
+                    email = ?
+                WHERE id = ?
+                """;
+
+        try(Connection conn = ConnectDB.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, userRequestDTO.getName());
+            stmt.setString(2, userRequestDTO.getEmail());
+            stmt.setLong(3, id);
+            int affectedRows = stmt.executeUpdate();
+
+            if(affectedRows > 0){
+                return true;
+            }
+        }
+        return false;
+    }
 }

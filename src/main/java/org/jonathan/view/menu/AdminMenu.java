@@ -52,11 +52,21 @@ public class AdminMenu {
         }
     }
 
-    public UserRequestDTO editUserView(UserRequestDTO uDTO){
+    public UserRequestDTO editUserView(UserResponseDTO uDTO){
         System.out.println("\n[--------- EDITAR USUÁRIO ---------]");
         String newName = InputHelpers.inputString("[ - Editar nome (Atual: "+uDTO.getName() +"): ", sc);
+
+        if(newName.isBlank()){
+            newName = uDTO.getName();
+        }
+
         String newEmail = InputHelpers.inputString("[ - Editar e-mail (Atual: "+uDTO.getEmail() +"): ", sc);
-        return new UserRequestDTO(newName, newEmail, uDTO.getPassword());
+
+        if(newEmail.isBlank()){
+            newEmail = uDTO.getEmail();
+        }
+
+        return new UserRequestDTO(newName, newEmail, null);
     }
 
 }
