@@ -21,10 +21,13 @@ public class AdminController {
             adminChoice = adminMenu.menuAdmin();
 
             switch (adminChoice){
+                // CREATE USER
                 case 1 -> {
                     UserRequestDTO userRequestDTO = adminMenu.createUserView();
                     adminService.createUser(userRequestDTO);
                 }
+
+                // FIND USER BY ID
                 case 2 -> {
                     Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
                     UserResponseDTO userFound = adminService.findUserById(idUser);
@@ -34,11 +37,15 @@ public class AdminController {
                         System.out.println();
                     }
                 }
+
+                //FIND ALL USERS
                 case 3 -> {
                     List<UserResponseDTO> userList = adminService.showAllUsers();
                     adminMenu.showAllUsers(userList);
                     System.out.println();
                 }
+
+                // UPDATE USER
                 case 4 -> {
                     Long idUser = adminMenu.findUserById("Insira o Id do usuário: ");
                     UserResponseDTO userFound = adminService.findUserById(idUser);
@@ -47,7 +54,11 @@ public class AdminController {
                     UserRequestDTO userRequestDTO = adminMenu.editUserView(userFound);
                     boolean updated = adminService.updateUser(idUser, userRequestDTO);
                 }
+
+                // DELETE USER
                 case 5 -> {}
+
+                // LEAVE SYSTEM
                 case 0 -> {
                     System.out.println("\n[---- SISTEMA ENCERRADO COM SUCESSO ----]");
                     return;
